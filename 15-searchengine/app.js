@@ -27,7 +27,7 @@ async function search(ctx) {
   // const query = ctx.params.query
   const query = ctx.request.url.searchParams.get('query')
   console.log('query=', query)
-  let docs = await get('/es/page2/_search', {page:query})
+  let docs = await get('/web2/page/_search', {page:query})
   /*let docs = [
     { url:'http://misavo.com', title:'ccc at misavo', page: 'hello ccc'},
     { url:'http://ccc.com/abc', title: 'ccc and abc', page: 'ccc abc'},
