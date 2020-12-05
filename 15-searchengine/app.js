@@ -35,8 +35,9 @@ async function search(ctx) {
   // ctx.response.body = docs
   //var rec=await get('/web2/page/_search', {page:'war'})
   //ctx.render('views/searchResult.ejs', {docs:docs})
-  docs=docs.hits.hits
-  ctx.render('views/searchResult.ejs', {docs:docs})
+  let docs1=docs.hits.hits[0]._source.url
+  console.log("docs1=",docs1)
+  ctx.render('views/searchResult.ejs', {docs:docs1})
 }
 
 async function pub(ctx) {
