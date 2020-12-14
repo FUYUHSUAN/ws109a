@@ -77,5 +77,5 @@ async function pub(ctx) {
   });
 }
 
-console.log('Server run at http://127.0.0.1:8001')
-await app.listen({ port: 8001 });
+console.log('Server run at http://127.0.0.1:8000')
+await app.listen({ port: 8000 });
