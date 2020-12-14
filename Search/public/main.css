@@ -1,0 +1,55 @@
+body{
+    margin:0px;
+}
+#posts{
+    margin-left:200px;
+    margin-right: 200px;
+}
+
+#header{
+    margin-left: 200px;
+    height:90px;
+    text-align:left;
+    line-height:80px;
+    background-color: rgb(255, 255, 255);
+}
+.header{
+    height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(img.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-family: sans-serif;
+}
+.search-field{
+    height: 40px;
+    border-color: black;
+    border-radius: 25px;
+    outline: none;
+}
+.business{
+    width: 400px;
+}
+.location{
+    width:200px;
+}
+.search-btn{
+    height:50px;
+    width: 150px;
+    background: #ffeb3b;
+    border:none;
+    columns: #000;
+    border-radius: 25px;
+}
+.search-btn:hover{
+    background:#ffc107;
+    cursor:pointer;
+}
+.form-box{
+    background:white;
+    padding: 5px;
+    position: fixed;
+    width: 2000px;
+}

@@ -1,0 +1,19 @@
+*{
+    font-family: 'Microsoft YaHei';
+}
+
+.searchContent{
+    width:100vw;
+    height: 100vh;
+    background-color: blue;
+}
+
+#link-content{
+    margin-left:300px;
+    margin-right: 300px;
+    height:400px;
+    background-color:#F2FFF2;
+    text-align: center;
+    line-height: 400px;
+}
+
