@@ -30,7 +30,7 @@ async function search(ctx) {
   const query = ctx.request.url.searchParams.get('query')
   console.log('query =', query)
   let docs = await get('/web2/page/_search', {page:query})
-
+ 
   /*let docs = [
     { url:'http://misavo.com', title:'ccc at misavo', page: 'hello ccc'},
     { url:'http://ccc.com/abc', title: 'ccc and abc', page: 'ccc abc'},
@@ -56,7 +56,8 @@ async function search(ctx) {
     console.log(docs[i])
     document = parser.parseFromString(docs[i]["_source"]["page"],"text/html")//.querySelector('#mw-content-text')
     document.querySelectorAll('p').forEach((node)=>s += (node.textContent))
-    docs[i]["_source"]["page"]=s.substring(0,200)
+    var j=s.indexOf(query)
+    docs[i]["_source"]["page"]=s.substring(j-150,j+150)
   }
   /*let document = parser.parseFromString(docs[0]["_source"]["page"],"text/html")//.querySelector('#mw-content-text')
   document.querySelectorAll('p').forEach((node)=>list.push(node.textContent))
