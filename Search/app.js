@@ -1,4 +1,6 @@
 import { Application, Router, send } from "https://deno.land/x/oak/mod.ts";
+import {DB} from "https://deno.land/x/sqlite/mod.ts";
+import {Session} from "https://deno.land/x/session@1.1.0/mod.ts"
 import {
   viewEngine,
   engineFactory,
@@ -7,18 +9,20 @@ import {
 import { get, post } from "./essearch.js";
 import { DOMParser, Element } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
+const db = new DB("data.db");
 const ejsEngine = engineFactory.getEjsEngine();
 const oakAdapter = adapterFactory.getOakAdapter();
 
 const router = new Router();
-
+   
 router
   .get('/', (ctx)=>{
     ctx.response.redirect('/public/searchh.html')
   })
   .get('/search', search)
   .get('/public/(.*)', pub)
-
+  .post('/login' ,login)
+  .get('/logout',login)
 const app = new Application();
 app.use(viewEngine(oakAdapter, ejsEngine));
 app.use(router.routes());
@@ -78,5 +82,6 @@ async function pub(ctx) {
   });
 }
 
-console.log('Server run at http://127.0.0.1:8000')
-await app.listen({ port: 8000 });
+console.log('Server run at http://127.0.0.1:8001')
+await app.listen({
+  port: 8001 });

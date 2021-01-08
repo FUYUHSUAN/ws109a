@@ -53,7 +53,7 @@ async function craw(urlList, urlMap) {
     if (count >=30000) break
     try {
       var page = await getPage(url)
-      await post(`/web2S/page/${count}`, {url, page})
+      await post(`/web2/page/${count}`, {url, page})
       // await Deno.writeTextFile(`data/${i}.txt`, page)
       var urls = html2urls(page)
       // console.log('urls=', urls)
