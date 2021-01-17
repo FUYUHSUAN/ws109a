@@ -94,7 +94,7 @@ for (var i = 0; i < 5; i++) {
     docs[i]["_source"]["page"]=s.substring(j-150,j+150)
   }
 ```
-* 在searchResult.ejs中這段是取出我所需要的那些字，印出
+* 在searchResult.ejs中這段是取出我所需要的那些字，並印出
 ```
 <ul id="posts">
   <% for (let doc of docs) { %>
