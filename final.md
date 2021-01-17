@@ -8,7 +8,12 @@
 >* 原本目標是做完signup及login後能做出紀錄的功能
 >* 現在是做完signup後能夠放入資料庫中，接者能夠login
 >* 期中我就已經完成爬蟲+搜索引擎的基本搜尋功能(期中作業中會說明期中的)
+>* 我期末學習了一點點linux的指令，並讓我的程式跑於我自己的linode中，未來期望能更熟悉linux的管理
 >* 期末我增加了美觀及login/logout+signup的功能
+>* 我是使用.ejs的方式來顯示我的畫面
+>* 我增加了Fail.ejs用來表示登入錯誤；Same.ejs來表示註冊錯誤；searchResult2.ejs表示登入後所進入的介面
+>* success.ejs表示我登入後成功的頁面,signupUi.ejs/loginUi.ejs表示登入登出一開始的介面
+
 ### login/signup
 >* 這邊我是參考老師03-blogStatic來理解並做修改的
 >* 我有做出登入成功的畫面
@@ -24,18 +29,16 @@
 <img src="picture/資料庫.png" width="600" height="400"/>
 
 ### 我認為重要及學習到許多的程式碼部分
-* 我用到了許多這個方式，主要是用來顯示另外一個畫面，而這些傳回的值，即作出相對應的動作，我寫.ejs中
+* 我用到了許多這個方式，主要是用來顯示另外一個畫面，而這些傳回的值，即作出相對應的動作，我寫在.ejs中
 ```
 ctx.render('views/Fail.ejs')
 ```
-* 這兩個分別是我登入錢和登入後所進去地方
+* 這兩個分別是我登入前預設的地方
 ```
 .get('/', (ctx)=>{
     ctx.response.redirect('/public/searchh.html')
   })
-.get('/lo',(ctx)=>{
-ctx.response.redirect('/public/searchh2.html')
-})
+
 ```
 * 使用userQuery以下的這種寫法，在之後相同的資料庫查詢中能減少許多程式碼，相同資料庫只須直接使用userQuery來搜尋即可
 ```

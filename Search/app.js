@@ -20,9 +20,6 @@ router
   .get('/', (ctx)=>{
     ctx.response.redirect('/public/searchh.html')
   })
-  .get('/lo',(ctx)=>{
-    ctx.response.redirect('/public/searchh2.html')
-  })
   .get('/search', search)
   .get('/public/(.*)', pub)
   .get('/login',loginUi)
