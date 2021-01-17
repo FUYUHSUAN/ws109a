@@ -89,14 +89,10 @@ body{
     border-radius:30px;
     background-color: palegoldenrod;
 }
-.login{
-    max-width: 400px;
-    min-height: wrap;
-    display: inline-block;
-    background: #F7DFD3;
-    box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
-    font-weight: 800;
-    border-radius: 30px;
-    margin-left: auto;
-    margin-right: auto;
+.container{
+    margin:0 auto;
+    width: 600px;
+    padding:10px 16px;
+    border-radius:30px;
+    background-color: palegoldenrod;
 }
