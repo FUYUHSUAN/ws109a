@@ -60,6 +60,7 @@ function userQuery(sql){
 >* 資料來源:參考老師上課所教+維基百科為搜索資料
 >* 在main.js中我有做了基本排版
 
+### 我認為重要及學習到許多的程式碼部分
 * 取亂數
 ```
  function sleep(ms) {
