@@ -1,0 +1,13 @@
+<%- include('headerlo.ejs') %>
+<div class="header">
+  <p>Hello user <%= curUser %></p>
+  <form action="/search" method="get">
+      <h1>FInd Everything Near You</h1>
+      <div class="form-box">
+          <input class="search-field business" type="text" name="query" placeholder="Type to search">
+          <input type="submit"  class="search-btn" value="search">
+      </div>
+      <a href="/logout">logout</a>
+  </form>
+</div>
+<%- include('footer.ejs') %>

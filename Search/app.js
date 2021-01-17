@@ -10,6 +10,7 @@ import { get, post } from "./essearch.js";
 import { DOMParser, Element } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
 const db = new DB("data.db");
+db.query("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, gmail TEXT)")
 const ejsEngine = engineFactory.getEjsEngine();
 const oakAdapter = adapterFactory.getOakAdapter();
 
@@ -19,12 +20,24 @@ router
   .get('/', (ctx)=>{
     ctx.response.redirect('/public/searchh.html')
   })
+  .get('/lo',(ctx)=>{
+    ctx.response.redirect('/public/searchh2.html')
+  })
   .get('/search', search)
   .get('/public/(.*)', pub)
+  .get('/login',loginUi)
   .post('/login' ,login)
-  .get('/logout',login)
+  .get('/logout',logout)
+  .get('/signup',signupUi)
+  .get('/searchlo',searchlo)
+  .post('/signup',signup);
+
+const session = new Session({ framework: "oak" });
+await session.init();
+
 const app = new Application();
 app.use(viewEngine(oakAdapter, ejsEngine));
+app.use(session.use()(session));
 app.use(router.routes());
 app.use(router.allowedMethods());
 const parser = new DOMParser();
@@ -82,6 +95,106 @@ async function pub(ctx) {
   });
 }
 
-console.log('Server run at http://127.0.0.1:8001')
+function sqlcmd(sql, arg1) {
+  console.log('sql:', sql)
+  try {
+    var results = db.query(sql, arg1)
+    console.log('sqlcmd: results=', results)
+    return results
+  } catch (error) {
+    console.log('sqlcmd error: ', error)
+    throw error
+  }
+}
+
+
+function userQuery(sql){
+  let list = []
+  for (const [id,username,password,gmail] of sqlcmd(sql)) {
+    list.push({id,username,password,gmail})
+  }
+  console.log('userQuery: list=', list)
+  return list
+}
+
+
+
+
+async function loginUi(ctx) {
+  // ctx.response.body = await render.loginUi();
+  ctx.render('views/loginUi.ejs')
+}
+
+async function signupUi(ctx){
+  ctx.render('views/signupUi.ejs')
+}
+
+async function parseFormBody(body) {
+  const pairs = await body.value
+  const obj = {}
+  for (const [key, value] of pairs) {
+    obj[key] = value
+  }
+  return obj
+} 
+
+async function signup(ctx) {
+  const body = ctx.request.body()
+  if (body.type === "form") {
+    var user = await parseFormBody(body)
+    var dbUsers = userQuery(`SELECT id,username,password, gmail FROM users WHERE username='${user.username}'`)
+
+    if (dbUsers.length === 0) {
+      sqlcmd("INSERT INTO users ( username, password, gmail) VALUES (?, ?, ?)", [user.username,user.password,user.gmail]);
+      ctx.render("views/success.ejs");
+    } else 
+      ctx.render("views/same.ejs")
+  }
+}
+
+async function searchlo(ctx){
+  ctx.response.body = await render.suc()
+}
+
+var curUser = ""
+async function login(ctx) {
+  console.log("go to login")
+  const body = ctx.request.body()
+  
+  if (body.type === "form") {
+    const pairs = await body.value
+    const logInfo = {}
+    for(const [key, value] of pairs){
+        logInfo[key] = value
+    }
+    var user = await parseFormBody(body)
+    var dbUsers = userQuery(`SELECT id, username, password,gmail FROM users WHERE username='${user.username}'`) // userMap[user.username]
+    var dbUser = dbUsers[0]
+    curUser = dbUser.username;
+    console.log("curUser=",curUser)
+    //curGrade = dbUser.grade;
+
+    console.log(user.password)
+    if (dbUser.password === user.password ) {
+        console.log("inside") 
+        ctx.state.session.set('user', user)
+        console.log("inside2")
+        ctx.render('views/searchResult2.ejs',{curUser})
+        console.log('session.user=', await ctx.state.session.get('user'))
+        //ctx.response.redirect('/lo'); 
+    } 
+    else {
+      console.log("username doesn't exist")
+      ctx.render('views/Fail.ejs')
+    }
+  }
+}
+
+async function logout(ctx) {
+  ctx.state.session.set('user', null)
+  ctx.response.redirect('/')
+}
+
+console.log('Server run at http://127.0.0.1:8000')
 await app.listen({
-  port: 8001 });
+  port: 8000 });

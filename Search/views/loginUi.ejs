@@ -1,0 +1,13 @@
+<%- include('header.ejs') %>
+<div class="signup">
+  <form action="/login" method="post" id="login" class="signup-form">
+    <div class="signup-html">
+    <h1>Login</h1>
+    <p><input type="text" placeholder="username" name="username"  class="input"></p>
+    <p><input type="password" placeholder="password" name="password" class="input"></p>
+    <p><input type="submit" value="Login" class="submit"></p>
+    <p>New user? <a href="/signup">Create an account</p>
+    </div>
+  </form>
+</div>
+<%- include('footer.ejs') %>
