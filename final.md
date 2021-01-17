@@ -104,8 +104,25 @@ for (var i = 0; i < 5; i++) {
   <% } %>
 </ul>
 ```
+## 心得
+```
+首先要感謝鍾誠老師一學期下來的用心教導，無論問甚麼問題，都能詳細解惑到我們完全聽懂，我認為這堂課就是需要動手實作才能學習到東西，假如只是單純clone老師的專案，那麼一定沒成果，一定要自己做，然後預見問題，並能解決問題這樣才算真正的有學習到，也許現在我並不算到非常精熟js，但是至少比一學期前的我學習到許多許多的觀念，及更加了解js
+```
+## 網頁運行結果
+* 一開始進入畫面
+<img src="picture/start.png" width="600" height="400"/>
 
+* login畫面
+<img src="picture/loginf.png" width="600" height="400"/>
 
- 
+* signup畫面
+<img src="picture/signup.png" width="600" height="400"/>
 
+* signup成功的畫面
+<img src="picture/login.png" width="600" height="400"/>
 
+* 登入後的畫面
+<img src="picture/可以看見user的名字.png" width="600" height="400"/>
+
+* 搜尋後的結果畫面
+<img src="picture/search.png" width="600" height="400"/>
